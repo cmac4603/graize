@@ -1,0 +1,9 @@
+controller:
+  image:
+    repository: graize/controller
+    tag: "0.1.0"
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  service:
+    port: 3000
+  resources: {}
