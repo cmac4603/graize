@@ -1,9 +1,33 @@
 controller:
   image:
-    repository: graize/controller
-    tag: "0.1.0"
-    pullPolicy: IfNotPresent
+    repository: ghcr.io/graize/graize-controller
+    tag: latest
+    pullPolicy: Always
   replicaCount: 1
   service:
     port: 3000
   resources: {}
+imagePullSecrets: []
+ui:
+  image:
+    repository: ghcr.io/graize/graize-ui
+    tag: latest
+    pullPolicy: Always
+  service:
+    port: 80
+  databaseUrl: sqlite:/data/data.db
+  resources: {}
+  persistence:
+    enabled: true
+    existingClaim: ""
+    storageClassName: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    retainOnUninstall: true
+  ingress:
+    enabled: false
+    className: ""
+    annotations: {}
+    hosts: []
+    tls: []

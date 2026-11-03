@@ -1,3 +1,8 @@
 .git
 target
 **/*.rs.bk
+.helm-charts
+.superpowers
+docs
+tests
+helm-session.md

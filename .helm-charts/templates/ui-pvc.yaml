@@ -1,0 +1,21 @@
+{{- if and .Values.ui.persistence.enabled (not .Values.ui.persistence.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "graize.uiDataName" . }}
+  labels:
+    {{- include "graize.uiLabels" . | nindent 4 }}
+  {{- if .Values.ui.persistence.retainOnUninstall }}
+  annotations:
+    helm.sh/resource-policy: keep
+  {{- end }}
+spec:
+  accessModes:
+    {{- toYaml .Values.ui.persistence.accessModes | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.ui.persistence.size }}
+  {{- with .Values.ui.persistence.storageClassName }}
+  storageClassName: {{ . | quote }}
+  {{- end }}
+{{- end }}
