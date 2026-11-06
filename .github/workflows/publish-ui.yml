@@ -28,5 +28,5 @@ jobs:
           file: ui/Dockerfile
           push: true
           tags: |
-            ghcr.io/graize/graize-ui:latest
-            ghcr.io/graize/graize-ui:${{ github.sha }}
+            ghcr.io/cmac4603/graize/graize-ui:latest
+            ghcr.io/cmac4603/graize/graize-ui:${{ github.sha }}
