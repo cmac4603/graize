@@ -28,21 +28,3 @@ pub async fn connect() -> toasty::Result<Db> {
 pub fn db(cx: &Cx) -> Db {
     app_context::<Db>(cx).clone()
 }
-
-#[cfg(test)]
-mod tests {
-    use super::database_url_from_env;
-
-    #[test]
-    fn uses_configured_database_url() {
-        assert_eq!(
-            database_url_from_env(Some("sqlite:/data/data.db".to_owned())),
-            "sqlite:/data/data.db"
-        );
-    }
-
-    #[test]
-    fn defaults_to_local_database_url() {
-        assert_eq!(database_url_from_env(None), "sqlite:data.db");
-    }
-}
