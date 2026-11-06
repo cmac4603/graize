@@ -9,8 +9,8 @@ Ingress is optional and disabled by default.
 Build either image from the repository root:
 
 ```sh
-docker build -f controller/Dockerfile -t ghcr.io/graize/graize-controller:latest .
-docker build -f ui/Dockerfile -t ghcr.io/graize/graize-ui:latest .
+docker build -f controller/Dockerfile -t ghcr.io/cmac4603/graize/controller:latest .
+docker build -f ui/Dockerfile -t ghcr.io/cmac4603/graize/ui:latest .
 ```
 
 The workflows in `.github/workflows/` publish each image to GHCR on releases,
@@ -45,20 +45,20 @@ helm upgrade --install graize .helm-charts \
   --set 'imagePullSecrets[0].name=ghcr-creds'
 ```
 
-The chart defaults to `ghcr.io/graize/graize-controller:latest` and
-`ghcr.io/graize/graize-ui:latest`. Set each app's `image.repository`, `image.tag`,
-and `image.pullPolicy` to override them.
+The chart defaults to `ghcr.io/cmac4603/graize/controller:latest` and
+`ghcr.io/cmac4603/graize/ui:latest`. Set each app's `image.repository`,
+`image.tag`, and `image.pullPolicy` to override them.
 
 ## Service addresses
 
-Within the release namespace, workloads can call the controller at
-`http://graize-controller:3000` and the UI at `http://graize-ui`. From other
-namespaces, use `http://graize-controller.graize.svc.cluster.local:3000` and
-`http://graize-ui.graize.svc.cluster.local`. The controller `/healthz` endpoint
-returns its health status.
-
-Service names include the Helm release name; replace `graize` if you install
-under a different release name. The controller remains internal-only.
+For the example release name `graize`, workloads in the release namespace can
+call the controller at `http://graize-controller:3000` and the UI at
+`http://graize-ui`. From another namespace, use
+`http://graize-controller.graize.svc.cluster.local:3000` and
+`http://graize-ui.graize.svc.cluster.local`. For a different installation,
+use `<release-name>-controller` and `<release-name>-ui`; in cross-namespace
+DNS names, use the release namespace in place of `graize`. The controller
+`/healthz` endpoint returns its health status and remains internal-only.
 
 ## UI Ingress
 

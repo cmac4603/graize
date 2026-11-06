@@ -1,6 +1,6 @@
 controller:
   image:
-    repository: ghcr.io/graize/graize-controller
+    repository: ghcr.io/cmac4603/graize/controller
     tag: latest
     pullPolicy: Always
   replicaCount: 1
@@ -10,7 +10,7 @@ controller:
 imagePullSecrets: []
 ui:
   image:
-    repository: ghcr.io/graize/graize-ui
+    repository: ghcr.io/cmac4603/graize/ui
     tag: latest
     pullPolicy: Always
   service:

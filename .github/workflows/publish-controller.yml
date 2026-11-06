@@ -28,5 +28,5 @@ jobs:
           file: controller/Dockerfile
           push: true
           tags: |
-            ghcr.io/cmac4603/graize/graize-controller:latest
-            ghcr.io/cmac4603/graize/graize-controller:${{ github.sha }}
+            ghcr.io/cmac4603/graize/controller:latest
+            ghcr.io/cmac4603/graize/controller:${{ github.sha }}
