@@ -1,4 +1,4 @@
-# ui
+# frontend
 
 A [Topcoat](https://github.com/tokio-rs/topcoat) application.
 

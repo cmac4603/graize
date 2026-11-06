@@ -39,7 +39,7 @@ async fn root(slot: Slot<'_>) -> Result<impl View> {
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>"ui"</title>
+                <title>"frontend"</title>
                 <link rel="stylesheet" href=(tailwind::stylesheet!())>
                 topcoat::font::link(font: GEIST)
                 topcoat::runtime::script()
@@ -62,7 +62,7 @@ async fn home() -> Result<impl View> {
                             attrs: attributes! { class="inline-block" }
                         )
                         " "
-                        "ui"
+                        "frontend"
                     )
                     card_description(
                         "Edit "

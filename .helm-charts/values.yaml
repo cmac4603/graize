@@ -8,9 +8,9 @@ controller:
     port: 3000
   resources: {}
 imagePullSecrets: []
-ui:
+frontend:
   image:
-    repository: ghcr.io/cmac4603/graize/ui
+    repository: ghcr.io/cmac4603/graize/frontend
     tag: latest
     pullPolicy: Always
   service:

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "graize.uiName" . }}
+  name: {{ include "graize.frontendName" . }}
   labels:
-    {{- include "graize.uiLabels" . | nindent 4 }}
+    {{- include "graize.frontendLabels" . | nindent 4 }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      {{- include "graize.uiSelectorLabels" . | nindent 6 }}
+      {{- include "graize.frontendSelectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "graize.uiSelectorLabels" . | nindent 8 }}
+        {{- include "graize.frontendSelectorLabels" . | nindent 8 }}
     spec:
       securityContext:
         fsGroup: 10001
@@ -24,27 +24,27 @@ spec:
       {{- end }}
       initContainers:
         - name: migrate
-          image: "{{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag }}"
-          imagePullPolicy: {{ .Values.ui.image.pullPolicy }}
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           args: ["toasty", "migration", "apply"]
           workingDir: /app
           env:
             - name: DATABASE_URL
-              value: {{ .Values.ui.databaseUrl | quote }}
+              value: {{ .Values.frontend.databaseUrl | quote }}
           volumeMounts:
             - name: data
               mountPath: /data
       containers:
-        - name: ui
-          image: "{{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag }}"
-          imagePullPolicy: {{ .Values.ui.image.pullPolicy }}
+        - name: frontend
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           env:
             - name: HOST
               value: "0.0.0.0"
             - name: PORT
               value: "3000"
             - name: DATABASE_URL
-              value: {{ .Values.ui.databaseUrl | quote }}
+              value: {{ .Values.frontend.databaseUrl | quote }}
           ports:
             - name: http
               containerPort: 3000
@@ -58,18 +58,18 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.ui.resources | nindent 12 }}
+            {{- toYaml .Values.frontend.resources | nindent 12 }}
           volumeMounts:
             - name: data
               mountPath: /data
       volumes:
         - name: data
-{{- if and .Values.ui.persistence.enabled .Values.ui.persistence.existingClaim }}
+{{- if and .Values.frontend.persistence.enabled .Values.frontend.persistence.existingClaim }}
           persistentVolumeClaim:
-            claimName: {{ .Values.ui.persistence.existingClaim }}
-{{- else if .Values.ui.persistence.enabled }}
+            claimName: {{ .Values.frontend.persistence.existingClaim }}
+{{- else if .Values.frontend.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ include "graize.uiDataName" . }}
+            claimName: {{ include "graize.frontendDataName" . }}
 {{- else }}
           emptyDir: {}
 {{- end }}

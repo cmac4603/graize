@@ -2,12 +2,12 @@
 {{- printf "%s-controller" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "graize.uiName" -}}
-{{- printf "%s-ui" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- define "graize.frontendName" -}}
+{{- printf "%s-frontend" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "graize.uiDataName" -}}
-{{- printf "%s-ui-data" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- define "graize.frontendDataName" -}}
+{{- printf "%s-frontend-data" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "graize.selectorLabels" -}}
@@ -15,8 +15,8 @@ app.kubernetes.io/name: controller
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
-{{- define "graize.uiSelectorLabels" -}}
-app.kubernetes.io/name: ui
+{{- define "graize.frontendSelectorLabels" -}}
+app.kubernetes.io/name: frontend
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
@@ -26,8 +26,8 @@ helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
-{{- define "graize.uiLabels" -}}
+{{- define "graize.frontendLabels" -}}
 helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" }}
-{{ include "graize.uiSelectorLabels" . }}
+{{ include "graize.frontendSelectorLabels" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
