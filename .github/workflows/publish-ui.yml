@@ -1,15 +1,8 @@
 name: Publish UI image
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ui/**
-      - ui/Dockerfile
-      - Cargo.toml
-      - Cargo.lock
-      - .dockerignore
-      - .github/workflows/publish-ui.yml
+  release:
+    types: [created]
 
 permissions:
   contents: read

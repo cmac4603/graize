@@ -13,14 +13,10 @@ docker build -f controller/Dockerfile -t ghcr.io/graize/graize-controller:latest
 docker build -f ui/Dockerfile -t ghcr.io/graize/graize-ui:latest .
 ```
 
-The workflows in `.github/workflows/` publish each image to GHCR on relevant
-pushes to `main`, tagged with `latest` and the full commit SHA. They do not
-deploy the chart. Chart values default to the `latest` tags; override the tag
-to pin a specific commit.
-
-GHCR packages are private unless their visibility is changed. Make both
-packages public for credential-free pulls, or create a Kubernetes Docker
-registry secret in the release namespace and configure `imagePullSecrets`.
+The workflows in `.github/workflows/` publish each image to GHCR on releases,
+tagged with `latest` and the full commit SHA.
+Chart values default to the `latest` tags; override the tag to pin a
+specific commit.
 
 ## Install or upgrade
 

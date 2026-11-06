@@ -1,15 +1,8 @@
 name: Publish controller image
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - controller/**
-      - controller/Dockerfile
-      - Cargo.toml
-      - Cargo.lock
-      - .dockerignore
-      - .github/workflows/publish-controller.yml
+  release:
+    types: [created]
 
 permissions:
   contents: read
