@@ -7,6 +7,7 @@ version = "0.1.2"
 authors = ["Colin MacRae <cmac4603@users.noreply.github.com>"]
 description = "Self-hosted AI Runner on K8s"
 edition = "2024"
+license = "MIT"
 
 [workspace.dependencies]
 serde = { version = "1.0", features = ["derive"] }
