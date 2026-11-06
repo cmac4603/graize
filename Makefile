@@ -1,10 +1,10 @@
-.PHONY: run-controller run-ui install-helm
+.PHONY: run-controller run-frontend install-helm
 
 run-controller:
 	cargo run -p controller
 
-run-ui:
-	topcoat dev -p ui
+run-frontend:
+	topcoat dev -p frontend
 
 install-helm:
 	helm upgrade --install graize .helm-charts --namespace graize --create-namespace

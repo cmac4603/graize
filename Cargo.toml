@@ -1,9 +1,9 @@
 [workspace]
-members = ["controller", "ui"]
+members = ["controller", "frontend"]
 resolver = "3"
 
 [workspace.package]
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Colin MacRae <cmac4603@users.noreply.github.com>"]
 description = "Self-hosted AI Runner on K8s"
 edition = "2024"

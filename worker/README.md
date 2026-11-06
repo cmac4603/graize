@@ -11,7 +11,7 @@ and make it writable by that UID (for Kubernetes volumes, configure suitable
 Build from the repository root because this is the worker image's build context:
 
 ```sh
-docker build -f worker/Dockerfile -t ghcr.io/graize/graize-worker:latest .
+docker build -f worker/Dockerfile -t ghcr.io/cmac4603/graize/worker:latest .
 ```
 
 Run it with a writable workspace and an OpenCode server password:
@@ -21,11 +21,11 @@ docker run --rm \
   -p 127.0.0.1:4096:4096 \
   -e OPENCODE_SERVER_PASSWORD="$OPENCODE_SERVER_PASSWORD" \
   -v "$PWD:/workspace" \
-  ghcr.io/graize/graize-worker:latest
+  ghcr.io/cmac4603/graize/worker:latest
 ```
 
 On each GitHub release, the publish workflow pushes `latest` and a
-commit-SHA-tagged image to `ghcr.io/graize/graize-worker`.
+commit-SHA-tagged image to `ghcr.io/cmac4603/graize/worker`.
 
 In Kubernetes, inject `OPENCODE_SERVER_PASSWORD` from a Secret. OpenCode v2.1.2
 protects the server API with HTTP Basic Auth when this variable is set; the

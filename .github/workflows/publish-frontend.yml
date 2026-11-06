@@ -1,4 +1,4 @@
-name: Publish UI image
+name: Publish frontend image
 
 on:
   release:
@@ -25,8 +25,8 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
-          file: ui/Dockerfile
+          file: frontend/Dockerfile
           push: true
           tags: |
-            ghcr.io/cmac4603/graize/graize-ui:latest
-            ghcr.io/cmac4603/graize/graize-ui:${{ github.sha }}
+            ghcr.io/cmac4603/graize/frontend:latest
+            ghcr.io/cmac4603/graize/frontend:${{ github.sha }}
