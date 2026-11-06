@@ -30,3 +30,4 @@ jobs:
           tags: |
             ghcr.io/cmac4603/graize/frontend:latest
             ghcr.io/cmac4603/graize/frontend:${{ github.sha }}
+            ghcr.io/cmac4603/graize/frontend:${{ github.event.release.tag_name }}

@@ -30,3 +30,4 @@ jobs:
           tags: |
             ghcr.io/cmac4603/graize/worker:latest
             ghcr.io/cmac4603/graize/worker:${{ github.sha }}
+            ghcr.io/cmac4603/graize/worker:${{ github.event.release.tag_name }}
