@@ -3,7 +3,7 @@ members = ["controller", "ui"]
 resolver = "3"
 
 [workspace.package]
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Colin MacRae <cmac4603@users.noreply.github.com>"]
 description = "Self-hosted AI Runner on K8s"
 edition = "2024"
