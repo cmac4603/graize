@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "graize.uiName" . }}
+  labels:
+    {{- include "graize.uiLabels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: {{ .Values.ui.service.port }}
+      targetPort: http
+      protocol: TCP
+  selector:
+    {{- include "graize.uiSelectorLabels" . | nindent 4 }}
