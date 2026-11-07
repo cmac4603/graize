@@ -10,6 +10,7 @@ edition = "2024"
 license = "MIT"
 
 [workspace.dependencies]
+anyhow = "1"
 base64 = "0.22"
 bytes = { version = "1", features = ["serde"] }
 futures = "0.3"

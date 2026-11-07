@@ -6,6 +6,10 @@ controller:
   replicaCount: 1
   service:
     port: 3000
+  workerAuth:
+    existingSecret: ""
+    passwordKey: OPENCODE_SERVER_PASSWORD
+    usernameKey: ""
   resources: {}
 imagePullSecrets: []
 frontend:

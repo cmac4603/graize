@@ -7,6 +7,7 @@
 #![allow(clippy::format_in_format_args)]
 #![allow(clippy::let_unit_value)]
 #![allow(unreachable_patterns)]
+#![allow(dead_code)]
 use serde::{Deserialize, Serialize};
 /// base64 codec for `Vec<u8>` fields produced from
 /// `format: byte`. Used via `#[serde(with = "base64_serde")]`
