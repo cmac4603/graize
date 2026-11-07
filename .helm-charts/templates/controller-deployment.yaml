@@ -18,6 +18,21 @@ spec:
         - name: controller
           image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
           imagePullPolicy: {{ .Values.controller.image.pullPolicy }}
+          {{- with .Values.controller.workerAuth.existingSecret }}
+          env:
+            - name: OPENCODE_SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ . | quote }}
+                  key: {{ $.Values.controller.workerAuth.passwordKey | quote }}
+            {{- with $.Values.controller.workerAuth.usernameKey }}
+            - name: OPENCODE_SERVER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.controller.workerAuth.existingSecret | quote }}
+                  key: {{ . | quote }}
+            {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: 3000

@@ -45,6 +45,25 @@ helm upgrade --install graize .helm-charts \
   --set 'imagePullSecrets[0].name=ghcr-creds'
 ```
 
+## Worker API authentication
+
+When the worker API uses HTTP Basic Auth, create a Kubernetes Secret outside this
+chart and reference it for the controller. The Secret must be in the release
+namespace. The chart does not create or manage the Secret.
+
+```sh
+helm upgrade --install graize .helm-charts \
+  --namespace graize \
+  --set controller.workerAuth.existingSecret=opencode-server \
+  --set controller.workerAuth.passwordKey=OPENCODE_SERVER_PASSWORD
+```
+
+The controller reads the password from the referenced key and sends Basic Auth
+to the worker. If the Secret also contains a username, set
+`controller.workerAuth.usernameKey` to that key; otherwise, the worker's default
+username (`opencode`) is used. Leave `controller.workerAuth.existingSecret`
+empty to run without worker authentication.
+
 The chart defaults to `ghcr.io/cmac4603/graize/controller:latest` and
 `ghcr.io/cmac4603/graize/frontend:latest`. Set each app's `image.repository`,
 `image.tag`, and `image.pullPolicy` to override them.
