@@ -123,6 +123,10 @@ OpenCode loads this configuration when the worker starts. The PAT is supplied
 at runtime and is not stored in the image. Limit the PAT's permissions to the
 repositories and operations the agent needs.
 
+## Skills
+
+- `requesting-code-review` [[Source](https://github.com/obra/superpowers/tree/main/skills/requesting-code-review)]
+
 ## References
 
 - [OpenCode v2 Docker image](https://opencode.ai/v2/docs#docker)
