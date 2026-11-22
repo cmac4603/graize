@@ -14,6 +14,7 @@ spec:
       labels:
         {{- include "graize.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "graize.controllerName" . }}
       containers:
         - name: controller
           image: "{{ .Values.controller.image.repository }}:{{ .Values.controller.image.tag }}"
